@@ -1,17 +1,17 @@
-var http=require('http');
+var http=require('http');   //require is a javascript function
 var url=require('url');
-var server=http.createServer(function(req,res){
-    var obj=url.parse(req.url,true);
+var server=http.createServer(function(req,res){   //creating server from this line
+    var obj=url.parse(req.url,true);    //parsing url
     req.setEncoding('utf8');
-    res.writeHead(200, { 'Content-Type': 'application/json' })
-    var path=obj.pathname;
+    res.writeHead(200, { 'Content-Type': 'application/json' })     //sending data in json
+    var path=obj.pathname;       //creating instance
     var time = obj.query.iso;
-    var date = new Date(time);
+    var date = new Date(time);   //date object
     var object={};
-    if(path=='/api/parsetime'){
-        object.hour=date.getHours();
-        object.minute=date.getMinutes();
-        object.second=date.getSeconds();
+    if(path=='/api/parsetime'){           
+        object.hour=date.getHours();       
+        object.minute=date.getMinutes();   //date object functions
+        object.second=date.getSeconds();     
     }
     else if(path=='/api/unixtime'){
         object.unixtime = date.getTime();
